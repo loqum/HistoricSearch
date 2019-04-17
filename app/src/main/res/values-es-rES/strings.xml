@@ -3,13 +3,13 @@
     <string name="app_name">Proyecto</string>
     <string name="username">Usuario</string>
     <string name="password">Contraseña</string>
-    <string name="bla">ll</string>
-    <string name="blabla">ll</string>
-    <string name="blablabla">ll</string>
     <string name="name">Nombre</string>
     <string name="surname">Apellido</string>
     <string name="email">Email</string>
     <string name="age">Edad</string>
     <string name="login">Iniciar sesión</string>
     <string name="register">Registrarse</string>
+    <string name="text_not_member">¿Aún no tienes cuenta? Regístrate</string>
+    <string name="error_message_email">Introduce una cuenta de correo válida</string>
+    <string name="error_valid_email_password">Correo y/o contraseña incorrectos</string>
 </resources>

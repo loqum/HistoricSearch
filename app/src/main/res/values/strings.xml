@@ -8,4 +8,7 @@
     <string name="age">Age</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
+    <string name="text_not_member">No account yet? Create one</string>
+    <string name="error_message_email">Enter Valid Email</string>
+    <string name="error_valid_email_password">Wrong Email or Password</string>
 </resources>

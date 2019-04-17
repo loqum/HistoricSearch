@@ -1,9 +1,11 @@
-package com.rfm.proyecto;
+package com.rfm.proyecto.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Register extends AppCompatActivity {
+import com.rfm.proyecto.R;
+
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

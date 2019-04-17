@@ -1,6 +1,4 @@
-package com.rfm.proyecto.com.rfm.pojo;
-
-import java.util.Date;
+package com.rfm.proyecto.pojo;
 
 public class User {
 

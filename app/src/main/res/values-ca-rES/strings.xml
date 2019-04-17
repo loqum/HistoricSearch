@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Proyecto</string>
+    <string name="username">Usuari</string>
+    <string name="password">Contrasenya</string>
+    <string name="name">Nom</string>
+    <string name="surname">Cognom</string>
+    <string name="email">Email</string>
+    <string name="age">Edat</string>
+    <string name="register">Registrar-se</string>
+    <string name="login">Iniciar sessió</string>
+    <string name="text_not_member">Encara no tens compte? Registra\'t</string>
+    <string name="error_message_email">Introdueix un compte de correu vàlid</string>
+    <string name="error_valid_email_password">Correu i/o contrasenya no vàlids</string>
+</resources>
