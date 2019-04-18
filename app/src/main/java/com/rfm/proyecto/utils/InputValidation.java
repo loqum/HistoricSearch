@@ -17,7 +17,7 @@ public class InputValidation {
         this.context = context;
     }
 
-    public boolean isInputEditTextFilled(EditText editText, TextInputLayout inputLayout, String message) {
+    public boolean isInputEditTextFilled(TextInputEditText editText, TextInputLayout inputLayout, String message) {
         String value = editText.getText().toString().trim();
 
         if (value.isEmpty()) {
@@ -31,7 +31,7 @@ public class InputValidation {
         return true;
     }
 
-    public boolean isInputEditTextMail(EditText editText, TextInputLayout inputLayout, String message) {
+    public boolean isInputEditTextMail(TextInputEditText editText, TextInputLayout inputLayout, String message) {
         String value = editText.getText().toString().trim();
 
         if (value.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(value).matches()) {

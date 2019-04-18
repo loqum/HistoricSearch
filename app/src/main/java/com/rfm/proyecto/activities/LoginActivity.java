@@ -2,10 +2,13 @@ package com.rfm.proyecto.activities;
 
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,12 +27,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextInputLayout textInputLayoutEmail;
     private TextInputLayout textInputLayoutPassword;
 
-    private EditText editTextMail;
-    private EditText editTextPassword;
+    private TextInputEditText editTextMail;
+    private TextInputEditText editTextPassword;
 
-    private Button buttonLogin;
+    private AppCompatButton buttonLogin;
 
-    private TextView textViewLinkRegister;
+    private AppCompatTextView textViewLinkRegister;
 
     private InputValidation inputValidation;
     private DatabaseHelper databaseHelper;
@@ -54,7 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextMail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
 
-        buttonLogin = findViewById(R.id.buttonLogin);
+        buttonLogin = findViewById(R.id.appCompatButtonLogin);
 
         textViewLinkRegister = findViewById(R.id.textViewLinkRegister);
     }

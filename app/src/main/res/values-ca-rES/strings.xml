@@ -12,4 +12,11 @@
     <string name="text_not_member">Encara no tens compte? Registra\'t</string>
     <string name="error_message_email">Introdueix un compte de correu vàlid</string>
     <string name="error_valid_email_password">Correu i/o contrasenya no vàlids</string>
+    <string name="confirm_password">Confirma la contrasenya</string>
+    <string name="already_register">Ja estàs registrat? Inicia sessió</string>
+    <string name="error_password_match">La contrasenya no és correcte</string>
+    <string name="success_message">Registre exitòs</string>
+    <string name="error_email_exists">La direcció de correu electrònic ja existeix</string>
+    <string name="error_message_name">Introdueix un nom d\'usuari</string>
+    <string name="error_message_password">Introdueix una contrasenya</string>
 </resources>

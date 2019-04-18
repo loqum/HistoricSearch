@@ -12,4 +12,11 @@
     <string name="text_not_member">¿Aún no tienes cuenta? Regístrate</string>
     <string name="error_message_email">Introduce una cuenta de correo válida</string>
     <string name="error_valid_email_password">Correo y/o contraseña incorrectos</string>
+    <string name="confirm_password">Confirma la contraseña</string>
+    <string name="already_register">¿Ya estás registrado? Inicia sesión</string>
+    <string name="error_password_match">La contraseña es incorrecta</string>
+    <string name="success_message">Registrado con éxito</string>
+    <string name="error_email_exists">La dirección de correo electrónico ya existe</string>
+    <string name="error_message_name">Introduce un nombre de usuario</string>
+    <string name="error_message_password">Introduce una contraseña</string>
 </resources>
