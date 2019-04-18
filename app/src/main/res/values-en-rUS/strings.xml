@@ -19,4 +19,5 @@
     <string name="error_email_exists">Email Already Exists</string>
     <string name="error_message_name">Enter Full Name</string>
     <string name="error_message_password">Enter Password</string>
+    <string name="error_registration">Error</string>
 </resources>

@@ -5,8 +5,6 @@ public class User {
     private Long id;
     private String userName;
     private String password;
-    private String name;
-    private String surname;
     private String email;
 
     public User() {
@@ -19,12 +17,10 @@ public class User {
         this.password = password;
     }
 
-    public User(Long id, String userName, String password, String name, String surname, String email) {
+    public User(Long id, String userName, String password, String email) {
         this.id = id;
         this.userName = userName;
         this.password = password;
-        this.name = name;
-        this.surname = surname;
         this.email = email;
     }
 
@@ -50,22 +46,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String username) {
-        this.surname = username;
     }
 
     public String getEmail() {

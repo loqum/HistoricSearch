@@ -50,9 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(COLUMN_USER_NAME, user.getName());
         values.put(COLUMN_USER_EMAIL, user.getEmail());
-        values.put(COLUMN_USER_SURNAME, user.getSurname());
         values.put(COLUMN_USER_PASSWORD, user.getPassword());
         values.put(COLUMN_USER_USERNAME, user.getUserName());
 
@@ -86,9 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 User user = new User();
                 user.setId(Long.parseLong(cursor.getString(cursor.getColumnIndex(COLUMN_USER_ID))));
-                user.setName(cursor.getString(cursor.getColumnIndex(COLUMN_USER_NAME)));
                 user.setUserName(cursor.getString(cursor.getColumnIndex(COLUMN_USER_USERNAME)));
-                user.setSurname(cursor.getString(cursor.getColumnIndex(COLUMN_USER_SURNAME)));
                 user.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_USER_EMAIL)));
                 user.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_USER_PASSWORD)));
 
@@ -109,9 +105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
-        values.put(COLUMN_USER_NAME, user.getName());
         values.put(COLUMN_USER_USERNAME, user.getUserName());
-        values.put(COLUMN_USER_SURNAME, user.getSurname());
         values.put(COLUMN_USER_EMAIL, user.getEmail());
         values.put(COLUMN_USER_PASSWORD, user.getPassword());
 

@@ -19,4 +19,5 @@
     <string name="error_email_exists">La dirección de correo electrónico ya existe</string>
     <string name="error_message_name">Introduce un nombre de usuario</string>
     <string name="error_message_password">Introduce una contraseña</string>
+    <string name="error_registration">Error en el registro</string>
 </resources>
