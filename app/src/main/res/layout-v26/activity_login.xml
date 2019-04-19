@@ -8,10 +8,10 @@
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    android:paddingTop="20dp">
-    <!--tools:context=".activities.LoginActivity"-->
+    android:paddingTop="20dp"
+    tools:context=".activities.LoginActivity">
 
-    <LinearLayout
+    <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp">
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 android:autofillHints="" />
         </android.support.design.widget.TextInputLayout>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             android:background="@color/colorTextHint"
             android:text="@string/login" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/textViewLinkRegister"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -73,5 +73,5 @@
             android:gravity="center"
             android:text="@string/text_not_member"
             android:textSize="16sp" />
-    </LinearLayout>
+    </android.support.v7.widget.LinearLayoutCompat>
 </android.support.v4.widget.NestedScrollView>

@@ -58,6 +58,20 @@ public class InputValidation {
         return true;
     }
 
+    public boolean isInputEditTextPasswordCorrect(TextInputEditText editText, TextInputLayout inputLayout, String message) {
+        String value = editText.getText().toString().trim();
+
+        if (value.length() < 6) {
+            inputLayout.setError(message);
+            hideKeyboardFrom(editText);
+            return false;
+        } else {
+            inputLayout.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
     private void hideKeyboardFrom(View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);

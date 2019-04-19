@@ -20,4 +20,6 @@
     <string name="error_message_name">Introduce un nombre de usuario</string>
     <string name="error_message_password">Introduce una contraseña</string>
     <string name="error_registration">Error en el registro</string>
+    <string name="error_lenght_password">" La contraseña debe tener al menos 6 caracteres"</string>
+    <string name="welcome_message">¡Bienvenido!</string>
 </resources>

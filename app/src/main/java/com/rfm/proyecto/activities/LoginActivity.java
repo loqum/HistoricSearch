@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextMail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
 
-        buttonLogin = findViewById(R.id.appCompatButtonLogin);
+        buttonLogin = findViewById(R.id.buttonLogin);
 
         textViewLinkRegister = findViewById(R.id.textViewLinkRegister);
     }
@@ -112,51 +112,41 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        if (databaseHelper.checkUser(editTextMail.getText().toString().trim()
-                , editTextPassword.getText().toString().trim())) {
+        mAuth.signInWithEmailAndPassword(editTextMail.getText().toString(), editTextPassword.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Snackbar.make(nestedScrollView, getString(R.string.welcome_message), Snackbar.LENGTH_LONG).show();
+                            updateUI(user);
 
-
-            mAuth.signInWithEmailAndPassword(editTextMail.getText().toString(), editTextPassword.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "signInWithEmail:success");
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                //updateUI(user);
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                                //updateUI(null);
-
-                            }
-
-                            // [START_EXCLUDE]
-                            if (!task.isSuccessful()) {
-                                Snackbar.make(nestedScrollView, getString(R.string.error_valid_email_password), Snackbar.LENGTH_LONG).show();
-                            }
-                            //hideProgressDialog();
-                            // [END_EXCLUDE]
+                        } else {
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
                         }
-                    });
 
-            Intent accountsIntent = new Intent(activity, MainActivity.class);
-            accountsIntent.putExtra("EMAIL", editTextMail.getText().toString().trim());
-            emptyInputEditText();
-            startActivity(accountsIntent);
+                        // [START_EXCLUDE]
+                        if (!task.isSuccessful()) {
+                            Snackbar.make(nestedScrollView, getString(R.string.error_valid_email_password), Snackbar.LENGTH_LONG).show();
+                        }
+                        // [END_EXCLUDE]
+                    }
+                });
 
-
-        } else {
-            // Snack Bar to show success message that record is wrong
-            Snackbar.make(nestedScrollView, getString(R.string.error_valid_email_password), Snackbar.LENGTH_LONG).show();
-        }
     }
 
     private void emptyInputEditText() {
         editTextMail.setText(null);
         editTextPassword.setText(null);
+    }
+
+    private void updateUI(FirebaseUser user) {
+        Intent intent = new Intent(getApplication(), MainActivity.class);
+        intent.putExtra("EMAIL", editTextMail.getText().toString().trim());
+        emptyInputEditText();
+        startActivity(intent);
     }
 }

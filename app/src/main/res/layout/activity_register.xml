@@ -11,7 +11,7 @@
     android:paddingTop="20dp"
     tools:context=".activities.LoginActivity">
 
-    <LinearLayout
+    <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -104,5 +104,5 @@
             android:text="@string/already_register"
             android:textSize="16sp" />
 
-    </LinearLayout>
+    </android.support.v7.widget.LinearLayoutCompat>
 </android.support.v4.widget.NestedScrollView>

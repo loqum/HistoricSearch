@@ -134,51 +134,37 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
-        if (!databaseHelper.checkUser(textInputEditTextEmail.getText().toString().trim())) {
+        if (!inputValidation.isInputEditTextPasswordCorrect(textInputEditTextPassword, textInputLayoutPassword, getString(R.string.error_lenght_password))) {
+            return;
+        }
 
-            mAuth.createUserWithEmailAndPassword(textInputEditTextEmail.getText().toString(), textInputEditTextPassword.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "createUserWithEmail:success");
-                                FirebaseUser user = mAuth.getCurrentUser();
+        mAuth.createUserWithEmailAndPassword(textInputEditTextEmail.getText().toString(), textInputEditTextPassword.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                Toast.makeText(RegisterActivity.this, getString(R.string.success_message),
-                                        Toast.LENGTH_SHORT).show();
+                        if (task.isSuccessful()) {
 
-                                //updateUI(user);
+                            Log.d(TAG, "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
 
-                                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                    Toast.makeText(RegisterActivity.this, getString(R.string.error_email_exists),
-                                            Toast.LENGTH_LONG).show();
-                                }
+                            Snackbar.make(nestedScrollView, getString(R.string.success_message), Snackbar.LENGTH_LONG).show();
+                            emptyInputEditText();
 
-                            } else {
+                        } else {
 
-                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(RegisterActivity.this, getString(R.string.error_registration),
-                                        Toast.LENGTH_SHORT).show();
-                                //updateUI(null);
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                Snackbar.make(nestedScrollView, getString(R.string.error_email_exists), Snackbar.LENGTH_LONG).show();
+
                             }
 
-
-                            // [START_EXCLUDE]
-                            //hideProgressDialog();
-                            // [END_EXCLUDE]
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(RegisterActivity.this, getString(R.string.error_registration),
+                                    Toast.LENGTH_SHORT).show();
                         }
-                    });
-            // [END create_user_with_email]
 
-
-            Snackbar.make(nestedScrollView, getString(R.string.success_message), Snackbar.LENGTH_LONG).show();
-            emptyInputEditText();
-
-
-        } else {
-            Snackbar.make(nestedScrollView, getString(R.string.error_email_exists), Snackbar.LENGTH_LONG).show();
-        }
+                    }
+                });
 
 
     }

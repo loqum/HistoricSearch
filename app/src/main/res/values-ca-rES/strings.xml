@@ -20,4 +20,6 @@
     <string name="error_message_name">Introdueix un nom d\'usuari</string>
     <string name="error_message_password">Introdueix una contrasenya</string>
     <string name="error_registration">Error en el registre</string>
+    <string name="error_lenght_password">La contrasenya ha de tenir almenys 6 caràcters</string>
+    <string name="welcome_message">Benvingut!</string>
 </resources>
