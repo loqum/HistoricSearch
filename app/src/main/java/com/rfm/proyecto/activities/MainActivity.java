@@ -9,16 +9,16 @@ import com.rfm.proyecto.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseApp.initializeApp(this);
+
+        initViews();
     }
 
     private void initViews() {
-        toolbar = findViewById(R.id.toolbar);
+        getSupportActionBar().show();
     }
 }

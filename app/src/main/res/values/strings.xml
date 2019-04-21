@@ -21,4 +21,5 @@
     <string name="error_registration">Registering error</string>
     <string name="error_lenght_password">Password should be at least 6 characters</string>
     <string name="welcome_message">Welcome!</string>
+    <string name="action_settings" translatable="false">Action Settings</string>
 </resources>
