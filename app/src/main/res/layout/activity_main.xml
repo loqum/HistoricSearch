@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nestedScrollView"
+    android:id="@+id/mainActivityView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    android:paddingBottom="20dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:paddingTop="20dp"
+    android:theme="@style/mainTheme.mainScreen"
     tools:context=".activities.MainActivity">
 
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar">
+    </include>
 
-</android.support.v4.widget.NestedScrollView>
+
+
+</android.support.v7.widget.LinearLayoutCompat>

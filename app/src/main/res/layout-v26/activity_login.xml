@@ -4,11 +4,11 @@
     android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:paddingTop="20dp"
+    android:theme="@style/mainTheme.login_register"
     tools:context=".activities.LoginActivity">
 
     <android.support.v7.widget.LinearLayoutCompat
@@ -33,11 +33,12 @@
                 android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:fontFamily="@font/quicksand_light"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:autofillHints="" />
+                android:textColor="@android:color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -50,11 +51,12 @@
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:fontFamily="@font/quicksand_light"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:autofillHints="" />
+                android:textColor="@android:color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
@@ -62,7 +64,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:background="@color/colorTextHint"
+            android:background="@color/colorSecondary"
+            android:fontFamily="@font/quicksand_bold"
             android:text="@string/login" />
 
         <android.support.v7.widget.AppCompatTextView
@@ -70,6 +73,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:fontFamily="@font/quicksand"
             android:gravity="center"
             android:text="@string/text_not_member"
             android:textSize="16sp" />

@@ -22,4 +22,6 @@
     <string name="error_lenght_password">Password should be at least 6 characters</string>
     <string name="welcome_message">Welcome!</string>
     <string name="action_settings" translatable="false">Action Settings</string>
+    <string name="signin">Sign In</string>
+    <string name="signout">Sign Out</string>
 </resources>

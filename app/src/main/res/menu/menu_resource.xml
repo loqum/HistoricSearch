@@ -3,7 +3,12 @@
 
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        android:icon="@drawable/ic_baseline_dehaze"
-        app:showAsAction="never"/>
+        app:showAsAction="never"
+        />
+
+    <item android:id="@+id/action_signout"
+        android:title="@string/signout"
+        app:showAsAction="never"
+        />
 
 </menu>

@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    android:paddingTop="20dp"
+    android:paddingTop="60dp"
+    android:theme="@style/mainTheme.login_register"
     tools:context=".activities.LoginActivity">
+
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!--<android.support.v7.widget.AppCompatImageView
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/logo"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:src="@drawable/logo"/> -->
+            android:fontFamily="@font/annie_use_your_telescope"
+            android:text="@string/signin"
+            android:textColor="@color/colorPrimaryText"
+            android:textAlignment="center"
+            android:textSize="28sp" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayoutEmail"
@@ -33,11 +45,12 @@
                 android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:fontFamily="@font/quicksand_light"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:autofillHints="" />
+                android:maxLines="1"/>
+
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -50,11 +63,11 @@
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:fontFamily="@font/quicksand_light"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:autofillHints="" />
+                android:maxLines="1"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
@@ -62,7 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:background="@color/colorTextHint"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/quicksand_bold"
             android:text="@string/login" />
 
         <android.support.v7.widget.AppCompatTextView
@@ -72,6 +86,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center"
             android:text="@string/text_not_member"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            app:fontFamily="@font/quicksand" />
     </android.support.v7.widget.LinearLayoutCompat>
 </android.support.v4.widget.NestedScrollView>

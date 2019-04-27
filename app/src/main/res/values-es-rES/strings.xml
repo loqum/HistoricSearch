@@ -22,4 +22,6 @@
     <string name="error_registration">Error en el registro</string>
     <string name="error_lenght_password">" La contraseña debe tener al menos 6 caracteres"</string>
     <string name="welcome_message">¡Bienvenido!</string>
+    <string name="signin">Iniciar Sesión</string>
+    <string name="signout">Cerrar Sesión</string>
 </resources>
