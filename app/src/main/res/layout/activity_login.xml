@@ -8,7 +8,7 @@
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    android:paddingTop="60dp"
+    android:paddingTop="20dp"
     android:theme="@style/mainTheme.login_register"
     tools:context=".activities.LoginActivity">
 
@@ -19,21 +19,21 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/logo"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/annie_use_your_telescope"
             android:text="@string/signin"
             android:textColor="@color/colorPrimaryText"
             android:textAlignment="center"
-            android:textSize="28sp" />
+            android:textSize="24sp" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayoutEmail"
@@ -77,7 +77,8 @@
             android:layout_marginTop="40dp"
             android:background="@color/colorPrimary"
             android:fontFamily="@font/quicksand_bold"
-            android:text="@string/login" />
+            android:text="@string/login"
+            android:textColor="@color/colorSecondaryText" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/textViewLinkRegister"

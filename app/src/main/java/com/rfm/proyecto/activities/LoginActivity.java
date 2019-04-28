@@ -147,5 +147,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         intent.putExtra("EMAIL", editTextMail.getText().toString().trim());
         emptyInputEditText();
         startActivity(intent);
+        finish();
     }
 }

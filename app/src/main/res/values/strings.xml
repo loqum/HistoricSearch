@@ -24,4 +24,6 @@
     <string name="action_settings" translatable="false">Action Settings</string>
     <string name="signin">Sign In</string>
     <string name="signout">Sign Out</string>
+    <string name="Open"></string>
+    <string name="Close"></string>
 </resources>

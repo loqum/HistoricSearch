@@ -13,12 +13,15 @@
 
     <style name="toolBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorSecondaryText</item>
+        <item name="android:color">@color/colorSecondaryText</item>
     </style>
 
     <style name="popUpTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">@color/colorPrimaryLight</item>
+        <item name="android:background">@color/colorPopupBackground</item>
         <item name="android:overlapAnchor">false</item>
         <item name="android:dropDownVerticalOffset">-4dp</item>
+        <item name="android:textColor">@color/colorTertiaryText</item>
     </style>
 
     <style name="mainTheme.mainScreen" parent="Theme.AppCompat.Light.NoActionBar">
@@ -31,4 +34,13 @@
         <item name="colorControlNormal">@color/colorPrimaryText</item>
         <item name="colorControlActivated">@color/colorPrimaryText</item>
     </style>
+
+    <style name="mainTheme.mainScreen.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="mainTheme.mainScreen.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="mainTheme.mainScreen.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
