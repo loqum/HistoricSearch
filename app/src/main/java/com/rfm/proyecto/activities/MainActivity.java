@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
   private DrawerLayout drawerLayout;
   private ActionBarDrawerToggle actionBarDrawerToggle;
   private NavigationView navigationView;
+  private Intent mainActivityIntent;
+  private Intent mapsActivityIntent;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
       updateUI();
     }
 
+    mainActivityIntent = new Intent(getApplication(), MainActivity.class);
+    mapsActivityIntent = new Intent(getApplication(), MapsActivity.class);
+
     actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
     actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
 
@@ -54,16 +60,18 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-          case R.id.my_profile:
-            Toast.makeText(MainActivity.this, "MyProfile", Toast.LENGTH_LONG).show();
+          case R.id.home:
+            startActivity(mainActivityIntent);
+            break;
           case R.id.settings:
-            Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_LONG).show();
-          case R.id.edit_profile:
-            Toast.makeText(MainActivity.this, "EditProfile", Toast.LENGTH_LONG).show();
+            startActivity(mapsActivityIntent);
+            break;
           case R.id.help:
-            Toast.makeText(MainActivity.this, "Help", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Help", Toast.LENGTH_SHORT).show();
+            break;
           case R.id.about_us:
-            Toast.makeText(MainActivity.this, "AboutUs", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "AboutUs", Toast.LENGTH_SHORT).show();
+            break;
         }
         return true;
       }
@@ -104,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
 
       default:
-        return super.onOptionsItemSelected(item);
+        return actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 
     }
   }

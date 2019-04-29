@@ -24,4 +24,7 @@
     <string name="welcome_message">Welcome!</string>
     <string name="signin">Sign In</string>
     <string name="signout">Sign Out</string>
+    <string name="home">Home</string>
+    <string name="map">Map</string>
+    <string name="satellite">Satellite</string>
 </resources>

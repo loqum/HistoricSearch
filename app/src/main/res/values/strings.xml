@@ -24,6 +24,14 @@
     <string name="action_settings" translatable="false">Action Settings</string>
     <string name="signin">Sign In</string>
     <string name="signout">Sign Out</string>
-    <string name="Open"></string>
-    <string name="Close"></string>
+    <string name="Open" translatable="false"/>
+    <string name="Close" translatable="false"/>
+    <string name="title_activity_maps" translatable="false">Map</string>
+    <string name="home">Home</string>
+    <string name="ZOOMLEVEL12" translatable="false">12</string>
+    <string name="ZOOMLEVEL16" translatable="false">16</string>
+    <string name="ZOOMLEVEL18" translatable="false">18</string>
+    <string name="ZOOMLEVEL20" translatable="false">20</string>
+    <string name="satellite">Satellite</string>
+    <string name="map">Map</string>
 </resources>

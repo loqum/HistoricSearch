@@ -24,4 +24,7 @@
     <string name="welcome_message">Benvingut!</string>
     <string name="signin">Iniciar Sessió</string>
     <string name="signout">Tancar Sessió</string>
+    <string name="home">Inici</string>
+    <string name="map">Mapa</string>
+    <string name="satellite">Satèl·lit</string>
 </resources>

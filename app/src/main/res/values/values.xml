@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="ZOOMLEVEL24" format="float" type="dimen">24.0</item>
+    <integer name="ZOOMLEVEL18">18</integer>
+    <integer name="ZOOMLEVEL16">16</integer>
+    <integer name="ZOOMLEVEL8">8</integer>
+</resources>
