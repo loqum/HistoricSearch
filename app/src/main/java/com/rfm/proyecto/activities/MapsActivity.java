@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -24,6 +23,7 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.rfm.proyecto.R;
+import com.rfm.proyecto.utils.Alerts;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -31,6 +31,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
   private NavigationView navigationView;
   private Intent mainActivityIntent;
   private Intent mapsActivityIntent;
+  private Intent profileActivityIntent;
   private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 0;
 
   @Override
@@ -55,23 +56,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     mainActivityIntent = new Intent(getApplication(), MainActivity.class);
     mapsActivityIntent = new Intent(getApplication(), MapsActivity.class);
+    profileActivityIntent = new Intent(getApplication(), ProfileActivity.class);
 
     navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
       @Override
       public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-          case R.id.home:
+
+          case R.id.home_item:
             startActivity(mainActivityIntent);
             finish();
             break;
-          case R.id.settings:
+
+          case R.id.settings_item:
             startActivity(mapsActivityIntent);
             break;
-          case R.id.help:
+
+          case R.id.my_profile_item:
+            startActivity(profileActivityIntent);
+            break;
+
+          case R.id.help_item:
             Toast.makeText(MapsActivity.this, "Help", Toast.LENGTH_SHORT).show();
             break;
-          case R.id.about_us:
-            Toast.makeText(MapsActivity.this, "AboutUs", Toast.LENGTH_SHORT).show();
+
+          case R.id.about_us_item:
+            Alerts.alertDialogAbout(MapsActivity.this, getDrawable(R.drawable.icon_about_item), getString(R.string.about_us), getString(R.string.author).concat("\n"), getString(R.string.github), getString(R.string.accept));
             break;
         }
         return true;

@@ -1,37 +1,44 @@
 <resources>
-    <string name="app_name">Proyecto</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-    <string name="name">Name</string>
-    <string name="surname">Surname</string>
-    <string name="email">Email</string>
+    <string name="about_us" translatable="false">About</string>
+    <string name="accept">Accept</string>
+    <string name="action_settings" translatable="false">Action Settings</string>
     <string name="age">Age</string>
-    <string name="register">Register</string>
-    <string name="login">Login</string>
-    <string name="text_not_member">No account yet? Create one</string>
-    <string name="error_message_email">Enter Valid Email</string>
-    <string name="error_valid_email_password">Wrong Email or Password</string>
-    <string name="confirm_password">Confirm Password</string>
     <string name="already_register">Already a member? Login</string>
-    <string name="error_password_match">Password does not matches</string>
-    <string name="success_message">Registration Successful</string>
+    <string name="app_name">Proyecto</string>
+    <string name="author" translatable="false">Rubén Fernández Moreno</string>
+    <string name="Close" translatable="false" />
+    <string name="confirm_password">Confirm Password</string>
+    <string name="email">Email</string>
     <string name="error_email_exists">Email Already Exists</string>
+    <string name="error_lenght_password">Password should be at least 6 characters</string>
+    <string name="error_message_email">Enter Valid Email</string>
     <string name="error_message_name">Enter Full Name</string>
     <string name="error_message_password">Enter Password</string>
+    <string name="error_password_match">Password does not matches</string>
     <string name="error_registration">Registering error</string>
-    <string name="error_lenght_password">Password should be at least 6 characters</string>
-    <string name="welcome_message">Welcome!</string>
-    <string name="action_settings" translatable="false">Action Settings</string>
+    <string name="error_valid_email_password">Wrong Email or Password</string>
+    <string name="github" translatable="false">https://github.com/loqum</string>
+    <string name="help">Help</string>
+    <string name="home">Home</string>
+    <string name="login">Login</string>
+    <string name="map">Map</string>
+    <string name="my_profile">My Profile</string>
+    <string name="name">Name</string>
+    <string name="Open" translatable="false" />
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="satellite">Satellite</string>
+    <string name="settings">Settings</string>
     <string name="signin">Sign In</string>
     <string name="signout">Sign Out</string>
-    <string name="Open" translatable="false"/>
-    <string name="Close" translatable="false"/>
+    <string name="success_message">Registration Successful</string>
+    <string name="surname">Surname</string>
+    <string name="text_not_member">No account yet? Create one</string>
     <string name="title_activity_maps" translatable="false">Map</string>
-    <string name="home">Home</string>
+    <string name="username">Username</string>
+    <string name="welcome_message">Welcome!</string>
     <string name="ZOOMLEVEL12" translatable="false">12</string>
     <string name="ZOOMLEVEL16" translatable="false">16</string>
     <string name="ZOOMLEVEL18" translatable="false">18</string>
     <string name="ZOOMLEVEL20" translatable="false">20</string>
-    <string name="satellite">Satellite</string>
-    <string name="map">Map</string>
 </resources>

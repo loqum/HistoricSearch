@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
-        android:icon="@drawable/ic_baseline_home_24px"
+        android:id="@+id/home_item"
         android:background="@drawable/bkg"
+        android:icon="@drawable/ic_baseline_home_24px"
         android:title="@string/home" />
 
     <item
-        android:id="@+id/settings"
+        android:id="@+id/my_profile_item"
+        android:icon="@drawable/icon_profile_item"
+        android:title="@string/my_profile" />
+
+    <item
+        android:id="@+id/map_item"
+        android:icon="@drawable/icon_map_item"
+        android:title="@string/map" />
+
+    <item
+        android:id="@+id/settings_item"
         android:icon="@drawable/ic_menu_manage"
-        android:title="Settings" />
+        android:title="@string/settings" />
 
     <item
-        android:id="@+id/help"
-        android:icon="@drawable/ic_menu_share"
-        android:title="Help" />
+        android:id="@+id/help_item"
+        android:icon="@drawable/icon_help_item"
+        android:title="@string/help" />
 
     <item
-        android:id="@+id/about_us"
-        android:icon="@drawable/ic_menu_slideshow"
-        android:title="About Us" />
+        android:id="@+id/about_us_item"
+        android:icon="@drawable/icon_about_item"
+        android:title="@string/about_us" />
 </menu>

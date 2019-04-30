@@ -27,4 +27,8 @@
     <string name="home">Inici</string>
     <string name="map">Mapa</string>
     <string name="satellite">Satèl·lit</string>
+    <string name="help">Ajuda</string>
+    <string name="settings">Configuració</string>
+    <string name="my_profile">El meu perfil</string>
+    <string name="accept">Acceptar</string>
 </resources>

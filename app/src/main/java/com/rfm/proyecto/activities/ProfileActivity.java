@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.rfm.proyecto.R;
 import com.rfm.proyecto.utils.Alerts;
 
-public class MainActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
   private FirebaseUser firebaseUser;
   private Toolbar toolbar;
@@ -28,13 +28,12 @@ public class MainActivity extends AppCompatActivity {
   private NavigationView navigationView;
   private Intent mainActivityIntent;
   private Intent mapsActivityIntent;
-  private Intent profileActivityIntent;
 
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_profile);
     initViews();
     setSupportActionBar(toolbar);
 
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
     mainActivityIntent = new Intent(getApplication(), MainActivity.class);
     mapsActivityIntent = new Intent(getApplication(), MapsActivity.class);
-    profileActivityIntent = new Intent(getApplication(), ProfileActivity.class);
 
     actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
     actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
@@ -63,25 +61,17 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-
           case R.id.home_item:
             startActivity(mainActivityIntent);
             break;
-
           case R.id.map_item:
             startActivity(mapsActivityIntent);
             break;
-
-          case R.id.my_profile_item:
-            startActivity(profileActivityIntent);
-            break;
-
           case R.id.help_item:
-            Toast.makeText(MainActivity.this, "Help", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ProfileActivity.this, "Help", Toast.LENGTH_SHORT).show();
             break;
-
           case R.id.about_us_item:
-            Alerts.alertDialogAbout(MainActivity.this,
+            Alerts.alertDialogAbout(ProfileActivity.this,
                     getDrawable(R.drawable.icon_about_item),
                     getString(R.string.about_us),
                     getString(R.string.author).concat("\n"),
@@ -102,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
   private void initViews() {
     toolbar = findViewById(R.id.app_bar);
-    drawerLayout = findViewById(R.id.activity_main);
+    drawerLayout = findViewById(R.id.activity_profile);
     navigationView = findViewById(R.id.navigationView);
   }
 
@@ -130,4 +120,3 @@ public class MainActivity extends AppCompatActivity {
 
   }
 }
-
