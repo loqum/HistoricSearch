@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Proyecto</string>
     <string name="username">Usuari</string>
     <string name="password">Contrasenya</string>
     <string name="name">Nom</string>

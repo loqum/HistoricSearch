@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +24,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.rfm.proyecto.R;
 import com.rfm.proyecto.pojo.User;
@@ -31,6 +32,7 @@ import com.rfm.proyecto.utils.Alerts;
 public class ProfileActivity extends AppCompatActivity {
 
   private static final String TAG = "AccessBD";
+
   private FirebaseUser firebaseUser;
   private Toolbar toolbar;
   private DrawerLayout drawerLayout;
@@ -41,6 +43,9 @@ public class ProfileActivity extends AppCompatActivity {
 
   private TextView textViewUsername;
   private TextView textViewEmail;
+  private TextView textViewTelephone;
+
+  private ProgressBar progressBarProfile;
 
 
   @Override
@@ -58,7 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
       toLoginActivity();
     }
 
-    getCurrentUser();
+    getDataCurrentUser();
 
     mainActivityIntent = new Intent(getApplication(), MainActivity.class);
     mapsActivityIntent = new Intent(getApplication(), MapsActivity.class);
@@ -78,9 +83,11 @@ public class ProfileActivity extends AppCompatActivity {
         switch (menuItem.getItemId()) {
           case R.id.home_item:
             startActivity(mainActivityIntent);
+            finish();
             break;
           case R.id.map_item:
             startActivity(mapsActivityIntent);
+            finish();
             break;
           case R.id.help_item:
             Toast.makeText(ProfileActivity.this, "Help", Toast.LENGTH_SHORT).show();
@@ -111,6 +118,9 @@ public class ProfileActivity extends AppCompatActivity {
     navigationView = findViewById(R.id.navigationView);
     textViewEmail = findViewById(R.id.textViewEmail);
     textViewUsername = findViewById(R.id.textViewUsername);
+    textViewTelephone = findViewById(R.id.textViewTelephone);
+    progressBarProfile = findViewById(R.id.progressBarProfile);
+    progressBarProfile.setVisibility(View.GONE);
   }
 
   @Override
@@ -137,17 +147,22 @@ public class ProfileActivity extends AppCompatActivity {
 
   }
 
-  private void getCurrentUser() {
+  private void getDataCurrentUser() {
 
     final DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("Users");
+
+    progressBarProfile.setVisibility(View.VISIBLE);
 
     userReference.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        User user = dataSnapshot.getValue(User.class);
+        progressBarProfile.setVisibility(View.GONE);
+
+        dataSnapshot.getValue(User.class);
 
         textViewUsername.setText(dataSnapshot.child(firebaseUser.getUid()).child("username").getValue().toString());
         textViewEmail.setText(dataSnapshot.child(firebaseUser.getUid()).child("email").getValue().toString());
+        textViewTelephone.setText(dataSnapshot.child(firebaseUser.getUid()).child("telephone").getValue().toString());
       }
 
       @Override

@@ -14,6 +14,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -51,6 +52,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
   private TextInputEditText textInputEditTextConfirmPassword;
   private TextInputEditText textInputEditTextTelephone;
 
+  private ProgressBar progressBarRegister;
+
   private AppCompatButton appCompatButtonRegister;
   private AppCompatTextView appCompatTextViewLoginLink;
 
@@ -85,6 +88,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     textInputEditTextPassword = findViewById(R.id.textInputEditTextPassword);
     textInputEditTextConfirmPassword = findViewById(R.id.textInputEditTextConfirmPassword);
     textInputEditTextTelephone = findViewById(R.id.textInputEditTextTelephone);
+
+    progressBarRegister = findViewById(R.id.progressBarRegister);
+    progressBarRegister.setVisibility(View.GONE);
 
     appCompatButtonRegister = findViewById(R.id.appCompatButtonRegister);
 
@@ -142,25 +148,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-    /*if (textInputEditTextUsername.getText() != null
-            && textInputEditTextPassword.getText() != null
-            && textInputEditTextEmail.getText() != null) {
-
-      user.setId(FirebaseAuth.getInstance().getCurrentUser().getUid());
-      user.setUsername(textInputEditTextUsername.getText().toString());
-      user.setPassword(textInputEditTextPassword.getText().toString());
-      user.setEmail(textInputEditTextEmail.getText().toString());
-    }*/
-
-
-    //firebaseDatabaseHelper.writeNewUser(user);
-
     if (textInputEditTextEmail.getText() != null
             && textInputEditTextPassword.getText() != null
             && textInputEditTextTelephone.getText() != null
             && textInputEditTextUsername.getText() != null) {
 
 
+      progressBarRegister.setVisibility(View.VISIBLE);
       mAuth.createUserWithEmailAndPassword(textInputEditTextEmail.getText().toString(), textInputEditTextPassword.getText().toString())
               .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
@@ -176,6 +170,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             textInputEditTextEmail.getText().toString()
                     );
 
+                    progressBarRegister.setVisibility(View.GONE);
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                       @Override

@@ -68,12 +68,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             finish();
             break;
 
-          case R.id.settings_item:
+          case R.id.map_item:
             startActivity(mapsActivityIntent);
+            finish();
             break;
 
           case R.id.my_profile_item:
             startActivity(profileActivityIntent);
+            finish();
             break;
 
           case R.id.help_item:

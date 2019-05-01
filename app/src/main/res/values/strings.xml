@@ -4,7 +4,7 @@
     <string name="action_settings" translatable="false">Action Settings</string>
     <string name="age">Age</string>
     <string name="already_register">Already a member? Login</string>
-    <string name="app_name">Proyecto</string>
+    <string name="app_name" translatable="false">HistoricSearch</string>
     <string name="author" translatable="false">Rubén Fernández Moreno</string>
     <string name="Close" translatable="false" />
     <string name="confirm_password">Confirm Password</string>
@@ -41,5 +41,5 @@
     <string name="ZOOMLEVEL16" translatable="false">16</string>
     <string name="ZOOMLEVEL18" translatable="false">18</string>
     <string name="ZOOMLEVEL20" translatable="false">20</string>
-    <string name="phone">Phone number</string>
+    <string name="phone">Telephone</string>
 </resources>

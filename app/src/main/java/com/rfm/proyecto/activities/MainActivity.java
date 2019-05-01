@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
           case R.id.home_item:
             startActivity(mainActivityIntent);
+            finish();
             break;
 
           case R.id.map_item:

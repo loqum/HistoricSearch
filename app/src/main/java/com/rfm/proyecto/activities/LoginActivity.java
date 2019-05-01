@@ -12,6 +12,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -47,6 +48,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private InputValidation inputValidation;
     private DatabaseHelper databaseHelper;
 
+    private ProgressBar progressBarLogin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         buttonLogin = findViewById(R.id.buttonLogin);
 
         textViewLinkRegister = findViewById(R.id.textViewLinkRegister);
+
+        progressBarLogin = findViewById(R.id.progressBarLogin);
+        progressBarLogin.setVisibility(View.GONE);
+
     }
 
     private void initListeners() {
@@ -111,17 +118,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
+        progressBarLogin.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(editTextMail.getText().toString(), editTextPassword.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
+                            progressBarLogin.setVisibility(View.GONE);
+
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Snackbar.make(nestedScrollView, getString(R.string.welcome_message), Snackbar.LENGTH_LONG).show();
                             updateUI(user);
 
                         } else {
+
+                            progressBarLogin.setVisibility(View.GONE);
+
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
