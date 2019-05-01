@@ -41,4 +41,5 @@
     <string name="ZOOMLEVEL16" translatable="false">16</string>
     <string name="ZOOMLEVEL18" translatable="false">18</string>
     <string name="ZOOMLEVEL20" translatable="false">20</string>
+    <string name="phone">Phone number</string>
 </resources>

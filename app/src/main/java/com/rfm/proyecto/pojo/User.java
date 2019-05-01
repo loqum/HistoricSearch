@@ -6,35 +6,29 @@ public class User {
   private String username;
   private String password;
   private String email;
+  private String telephone;
   private String location;
 
   public User() {
 
   }
 
-  public User(String id, String username, String password) {
-    this.id = id;
+  public User(String username, String password) {
     this.username = username;
     this.password = password;
   }
 
-  public User(String id, String username, String password, String email) {
-    this.id = id;
+  public User(String username, String telephone, String email) {
     this.username = username;
-    this.password = password;
+    this.telephone = telephone;
     this.email = email;
   }
 
-  public User(String username, String email) {
-    this.username = username;
-    this.email = email;
-  }
-
-  public User(String id, String username, String password, String email, String location) {
-    this.id = id;
+  public User(String username, String password, String email, String location) {
     this.username = username;
     this.password = password;
     this.email = email;
+    this.location = location;
   }
 
   public String getId() {
@@ -43,6 +37,14 @@ public class User {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+  public String getTelephone() {
+    return telephone;
+  }
+
+  public void setTelephone(String telephone) {
+    this.telephone = telephone;
   }
 
   public String getUsername() {

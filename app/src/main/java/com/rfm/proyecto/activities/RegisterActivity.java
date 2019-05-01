@@ -1,12 +1,12 @@
 package com.rfm.proyecto.activities;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,11 +43,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
   private TextInputLayout textInputLayoutEmail;
   private TextInputLayout textInputLayoutPassword;
   private TextInputLayout textInputLayoutConfirmPassword;
+  private TextInputLayout textInputLayoutTelephone;
 
   private TextInputEditText textInputEditTextUsername;
   private TextInputEditText textInputEditTextEmail;
   private TextInputEditText textInputEditTextPassword;
   private TextInputEditText textInputEditTextConfirmPassword;
+  private TextInputEditText textInputEditTextTelephone;
 
   private AppCompatButton appCompatButtonRegister;
   private AppCompatTextView appCompatTextViewLoginLink;
@@ -76,11 +78,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     textInputLayoutEmail = findViewById(R.id.textInputLayoutEmail);
     textInputLayoutPassword = findViewById(R.id.textInputLayoutPassword);
     textInputLayoutConfirmPassword = findViewById(R.id.textInputLayoutConfirmPassword);
+    textInputLayoutTelephone = findViewById(R.id.textInputLayoutTelephone);
 
     textInputEditTextUsername = findViewById(R.id.textInputEditTextUsername);
     textInputEditTextEmail = findViewById(R.id.textInputEditTextEmail);
     textInputEditTextPassword = findViewById(R.id.textInputEditTextPassword);
     textInputEditTextConfirmPassword = findViewById(R.id.textInputEditTextConfirmPassword);
+    textInputEditTextTelephone = findViewById(R.id.textInputEditTextTelephone);
 
     appCompatButtonRegister = findViewById(R.id.appCompatButtonRegister);
 
@@ -151,7 +155,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     //firebaseDatabaseHelper.writeNewUser(user);
 
-    if (textInputEditTextEmail.getText() != null && textInputEditTextPassword.getText() != null) {
+    if (textInputEditTextEmail.getText() != null
+            && textInputEditTextPassword.getText() != null
+            && textInputEditTextTelephone.getText() != null
+            && textInputEditTextUsername.getText() != null) {
 
 
       mAuth.createUserWithEmailAndPassword(textInputEditTextEmail.getText().toString(), textInputEditTextPassword.getText().toString())
@@ -163,19 +170,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                     Log.d(TAG, "createUserWithEmail:success");
 
-                    user = new User(textInputEditTextUsername.getText().toString(), textInputEditTextEmail.getText().toString());
-
-                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                    user = new User(
+                            textInputEditTextUsername.getText().toString(),
+                            textInputEditTextTelephone.getText().toString(),
+                            textInputEditTextEmail.getText().toString()
+                    );
 
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                       @Override
                       public void onComplete(@NonNull Task<Void> task) {
                         Snackbar.make(nestedScrollView, getString(R.string.success_message), Snackbar.LENGTH_LONG).show();
+                        emptyInputEditText();
                       }
                     });
 
-                    updateUI(firebaseUser);
+                    toLoginActivity();
 
                   } else {
 
@@ -200,14 +210,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     textInputEditTextEmail.setText(null);
     textInputEditTextPassword.setText(null);
     textInputEditTextConfirmPassword.setText(null);
+    textInputEditTextTelephone.setText(null);
   }
 
-  private void updateUI(FirebaseUser firebaseUser) {
-    Intent intent = new Intent(getApplication(), LoginActivity.class);
-    if (textInputEditTextEmail.getText() != null) {
-      intent.putExtra("EMAIL", textInputEditTextEmail.getText().toString().trim());
-    }
-    emptyInputEditText();
-    startActivity(intent);
+  private void toLoginActivity() {
+    Handler handler = new Handler();
+    handler.postDelayed(toLoginTask, 2500);
   }
+
+  private Runnable toLoginTask = new Runnable() {
+    public void run() {
+      Intent intent = new Intent(getApplication(), LoginActivity.class);
+      startActivity(intent);
+    }
+  };
+
 }
