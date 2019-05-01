@@ -1,5 +1,6 @@
 package com.rfm.proyecto.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
@@ -7,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.view.View;
 import android.widget.TextView;
 
 public class Alerts {
@@ -35,6 +37,8 @@ public class Alerts {
     alertDialog.show();
 
   }
+
+
 
 
 }
