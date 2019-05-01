@@ -40,10 +40,11 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseApp.initializeApp(this);
 
+
     firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     if (firebaseUser == null) {
-      updateUI();
+      toLoginActivity();
     }
 
     mainActivityIntent = new Intent(getApplication(), MainActivity.class);
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     });
   }
 
-  private void updateUI() {
+  private void toLoginActivity() {
     Intent intent = new Intent(getApplication(), LoginActivity.class);
     startActivity(intent);
     finish();

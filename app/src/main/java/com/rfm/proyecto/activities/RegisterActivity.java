@@ -98,7 +98,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     inputValidation = new InputValidation(activity);
     firebaseDatabaseHelper = new FirebaseDatabaseHelper(activity);
     databaseReference = FirebaseDatabase.getInstance().getReference();
-    user = new User();
 
   }
 
@@ -139,18 +138,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-    if (textInputEditTextUsername.getText() != null
+    /*if (textInputEditTextUsername.getText() != null
             && textInputEditTextPassword.getText() != null
             && textInputEditTextEmail.getText() != null) {
 
-      user.setId(databaseReference.push().getKey());
+      user.setId(FirebaseAuth.getInstance().getCurrentUser().getUid());
       user.setUsername(textInputEditTextUsername.getText().toString());
       user.setPassword(textInputEditTextPassword.getText().toString());
       user.setEmail(textInputEditTextEmail.getText().toString());
-    }
+    }*/
 
 
-    firebaseDatabaseHelper.writeNewUser(user);
+    //firebaseDatabaseHelper.writeNewUser(user);
 
     if (textInputEditTextEmail.getText() != null && textInputEditTextPassword.getText() != null) {
 
@@ -163,9 +162,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                   if (task.isSuccessful()) {
 
                     Log.d(TAG, "createUserWithEmail:success");
+
+                    user = new User(textInputEditTextUsername.getText().toString(), textInputEditTextEmail.getText().toString());
+
                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
 
-                    Snackbar.make(nestedScrollView, getString(R.string.success_message), Snackbar.LENGTH_LONG).show();
+                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                      @Override
+                      public void onComplete(@NonNull Task<Void> task) {
+                        Snackbar.make(nestedScrollView, getString(R.string.success_message), Snackbar.LENGTH_LONG).show();
+                      }
+                    });
 
                     updateUI(firebaseUser);
 

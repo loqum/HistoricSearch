@@ -8,19 +8,29 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.rfm.proyecto.R;
+import com.rfm.proyecto.pojo.User;
 import com.rfm.proyecto.utils.Alerts;
 
 public class ProfileActivity extends AppCompatActivity {
 
+  private static final String TAG = "AccessBD";
   private FirebaseUser firebaseUser;
   private Toolbar toolbar;
   private DrawerLayout drawerLayout;
@@ -28,6 +38,9 @@ public class ProfileActivity extends AppCompatActivity {
   private NavigationView navigationView;
   private Intent mainActivityIntent;
   private Intent mapsActivityIntent;
+
+  private TextView textViewUsername;
+  private TextView textViewEmail;
 
 
   @Override
@@ -42,8 +55,10 @@ public class ProfileActivity extends AppCompatActivity {
     firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     if (firebaseUser == null) {
-      updateUI();
+      toLoginActivity();
     }
+
+    getCurrentUser();
 
     mainActivityIntent = new Intent(getApplication(), MainActivity.class);
     mapsActivityIntent = new Intent(getApplication(), MapsActivity.class);
@@ -84,7 +99,7 @@ public class ProfileActivity extends AppCompatActivity {
     });
   }
 
-  private void updateUI() {
+  private void toLoginActivity() {
     Intent intent = new Intent(getApplication(), LoginActivity.class);
     startActivity(intent);
     finish();
@@ -94,6 +109,8 @@ public class ProfileActivity extends AppCompatActivity {
     toolbar = findViewById(R.id.app_bar);
     drawerLayout = findViewById(R.id.activity_profile);
     navigationView = findViewById(R.id.navigationView);
+    textViewEmail = findViewById(R.id.textViewEmail);
+    textViewUsername = findViewById(R.id.textViewUsername);
   }
 
   @Override
@@ -117,6 +134,28 @@ public class ProfileActivity extends AppCompatActivity {
     } else {
       return actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
+
+  }
+
+  private void getCurrentUser() {
+
+    final DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("Users");
+
+    userReference.addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        User user = dataSnapshot.getValue(User.class);
+
+        textViewUsername.setText(dataSnapshot.child(firebaseUser.getUid()).child("username").getValue().toString());
+        textViewEmail.setText(dataSnapshot.child(firebaseUser.getUid()).child("email").getValue().toString());
+      }
+
+      @Override
+      public void onCancelled(@NonNull DatabaseError databaseError) {
+        Log.w(TAG, "createUserWithEmail:failure", databaseError.toException());
+      }
+    });
+
 
   }
 }
