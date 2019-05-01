@@ -25,7 +25,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rfm.proyecto.R;
-import com.rfm.proyecto.controller.DatabaseHelper;
 import com.rfm.proyecto.controller.FirebaseDatabaseHelper;
 import com.rfm.proyecto.pojo.User;
 import com.rfm.proyecto.utils.InputValidation;
@@ -39,8 +38,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
   private final AppCompatActivity activity = RegisterActivity.this;
 
   private NestedScrollView nestedScrollView;
-
-  private ContentLoadingProgressBar progressBar;
 
   private TextInputLayout textInputLayoutUsername;
   private TextInputLayout textInputLayoutEmail;
