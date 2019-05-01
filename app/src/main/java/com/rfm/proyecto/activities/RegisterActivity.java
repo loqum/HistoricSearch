@@ -56,7 +56,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
   private AppCompatTextView appCompatTextViewLoginLink;
 
   private InputValidation inputValidation;
-  private DatabaseHelper databaseHelper;
   private FirebaseDatabaseHelper firebaseDatabaseHelper;
   private DatabaseReference databaseReference;
   private User user;
@@ -100,7 +99,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
   private void initObjects() {
     inputValidation = new InputValidation(activity);
-    databaseHelper = new DatabaseHelper(activity);
     firebaseDatabaseHelper = new FirebaseDatabaseHelper(activity);
     databaseReference = FirebaseDatabase.getInstance().getReference();
     user = new User();
@@ -144,42 +142,51 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-    user.setId(databaseReference.push().getKey());
-    user.setUsername(textInputEditTextUsername.getText().toString());
-    user.setPassword(textInputEditTextPassword.getText().toString());
-    user.setEmail(textInputEditTextEmail.getText().toString());
+    if (textInputEditTextUsername.getText() != null
+            && textInputEditTextPassword.getText() != null
+            && textInputEditTextEmail.getText() != null) {
+
+      user.setId(databaseReference.push().getKey());
+      user.setUsername(textInputEditTextUsername.getText().toString());
+      user.setPassword(textInputEditTextPassword.getText().toString());
+      user.setEmail(textInputEditTextEmail.getText().toString());
+    }
+
 
     firebaseDatabaseHelper.writeNewUser(user);
 
-    mAuth.createUserWithEmailAndPassword(textInputEditTextEmail.getText().toString(), textInputEditTextPassword.getText().toString())
-            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-              @Override
-              public void onComplete(@NonNull Task<AuthResult> task) {
+    if (textInputEditTextEmail.getText() != null && textInputEditTextPassword.getText() != null) {
 
-                if (task.isSuccessful()) {
 
-                  Log.d(TAG, "createUserWithEmail:success");
-                  FirebaseUser firebaseUser = mAuth.getCurrentUser();
+      mAuth.createUserWithEmailAndPassword(textInputEditTextEmail.getText().toString(), textInputEditTextPassword.getText().toString())
+              .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
 
-                  Snackbar.make(nestedScrollView, getString(R.string.success_message), Snackbar.LENGTH_LONG).show();
+                  if (task.isSuccessful()) {
 
-                  updateUI(firebaseUser);
+                    Log.d(TAG, "createUserWithEmail:success");
+                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
 
-                } else {
+                    Snackbar.make(nestedScrollView, getString(R.string.success_message), Snackbar.LENGTH_LONG).show();
 
-                  if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                    Snackbar.make(nestedScrollView, getString(R.string.error_email_exists), Snackbar.LENGTH_LONG).show();
+                    updateUI(firebaseUser);
 
+                  } else {
+
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                      Snackbar.make(nestedScrollView, getString(R.string.error_email_exists), Snackbar.LENGTH_LONG).show();
+
+                    }
+
+                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                    Toast.makeText(RegisterActivity.this, getString(R.string.error_registration),
+                            Toast.LENGTH_SHORT).show();
                   }
 
-                  Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                  Toast.makeText(RegisterActivity.this, getString(R.string.error_registration),
-                          Toast.LENGTH_SHORT).show();
                 }
-
-              }
-            });
-
+              });
+    }
 
   }
 
@@ -192,7 +199,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
   private void updateUI(FirebaseUser firebaseUser) {
     Intent intent = new Intent(getApplication(), LoginActivity.class);
-    intent.putExtra("EMAIL", textInputEditTextEmail.getText().toString().trim());
+    if (textInputEditTextEmail.getText() != null) {
+      intent.putExtra("EMAIL", textInputEditTextEmail.getText().toString().trim());
+    }
     emptyInputEditText();
     startActivity(intent);
   }
