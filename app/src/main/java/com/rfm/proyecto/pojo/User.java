@@ -1,5 +1,9 @@
 package com.rfm.proyecto.pojo;
 
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.List;
+
 public class User {
 
   private String id;
@@ -7,7 +11,7 @@ public class User {
   private String password;
   private String email;
   private String telephone;
-  private String location;
+  private List<LatLng> locations;
 
   public User() {
 
@@ -24,11 +28,11 @@ public class User {
     this.email = email;
   }
 
-  public User(String username, String password, String email, String location) {
+  public User(String username, String password, String email, List<LatLng> locations) {
     this.username = username;
     this.password = password;
     this.email = email;
-    this.location = location;
+    this.locations = locations;
   }
 
   public String getId() {
@@ -71,11 +75,11 @@ public class User {
     this.email = email;
   }
 
-  public String getLocation() {
-    return location;
+  public List<LatLng> getLocation() {
+    return locations;
   }
 
-  public void setLocation(String location) {
-    this.location = location;
+  public void setLocation(List<LatLng> locations) {
+    this.locations = locations;
   }
 }
