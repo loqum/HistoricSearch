@@ -153,12 +153,12 @@ public class ProfileActivity extends AppCompatActivity {
 
     progressBarProfile.setVisibility(View.VISIBLE);
 
-    userReference.addValueEventListener(new ValueEventListener() {
+    userReference.addListenerForSingleValueEvent(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
         progressBarProfile.setVisibility(View.GONE);
 
-        dataSnapshot.getValue(User.class);
+        //dataSnapshot.getValue(User.class);
 
         textViewUsername.setText(dataSnapshot.child(firebaseUser.getUid()).child("username").getValue().toString());
         textViewEmail.setText(dataSnapshot.child(firebaseUser.getUid()).child("email").getValue().toString());

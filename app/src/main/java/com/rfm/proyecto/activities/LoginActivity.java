@@ -63,6 +63,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         initViews();
         initListeners();
         initObjects();
+
+        progressBarLogin.setVisibility(View.GONE);
     }
 
     private void initViews() {
@@ -79,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         textViewLinkRegister = findViewById(R.id.textViewLinkRegister);
 
         progressBarLogin = findViewById(R.id.progressBarLogin);
-        progressBarLogin.setVisibility(View.GONE);
+
 
     }
 
