@@ -31,4 +31,5 @@
     <string name="my_profile">Mi Perfil</string>
     <string name="accept">Aceptar</string>
     <string name="phone">Teléfono</string>
+    <string name="changeUsernameSuccess">Nombre de usuario cambiado con éxito</string>
 </resources>

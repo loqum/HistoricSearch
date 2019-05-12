@@ -42,4 +42,5 @@
     <string name="ZOOMLEVEL18" translatable="false">18</string>
     <string name="ZOOMLEVEL20" translatable="false">20</string>
     <string name="phone">Telephone</string>
+    <string name="changeUsernameSuccess">User name changed successfully</string>
 </resources>

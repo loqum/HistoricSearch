@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -29,12 +28,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.rfm.proyecto.R;
 import com.rfm.proyecto.pojo.Location;
@@ -43,14 +40,12 @@ import com.rfm.proyecto.utils.Alerts;
 import com.rfm.proyecto.utils.MapsUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
   private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 0;
-  private static final String TAG = "CONNECTION FIREDATABASE";
+  private static final String TAG = "MapsActivity";
 
   private GoogleMap mMap;
   private FirebaseUser firebaseUser;
@@ -62,8 +57,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
   User user;
   Location location;
   List<Location> markers;
-  List<Marker> userMarkers = new ArrayList<>();
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     initObjects();
 
     firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    MARKERS_DATABASE_REFERENCE = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("locations");
+    MARKERS_DATABASE_REFERENCE = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("userLocations");
 
     GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
 
@@ -189,7 +182,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
       @Override
       public void onCancelled(@NonNull DatabaseError databaseError) {
-
+        Log.d(TAG, "Cancelled.");
       }
     });
 

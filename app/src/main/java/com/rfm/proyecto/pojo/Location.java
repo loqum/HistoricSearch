@@ -39,8 +39,7 @@ public class Location {
     Longitude = longitude;
   }
 
-  public List<LatLng> getMarkers() {
-    return markers;
+  public List<LatLng> getMarkers() {    return markers;
   }
 
   public void setMarkers(List<LatLng> markers) {

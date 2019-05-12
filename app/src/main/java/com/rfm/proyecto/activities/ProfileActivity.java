@@ -1,17 +1,21 @@
 package com.rfm.proyecto.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,7 +30,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rfm.proyecto.R;
-import com.rfm.proyecto.pojo.User;
+import com.rfm.proyecto.controller.FirebaseDatabaseHelper;
 import com.rfm.proyecto.utils.Alerts;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -41,13 +45,16 @@ public class ProfileActivity extends AppCompatActivity {
   private Intent mainActivityIntent;
   private Intent mapsActivityIntent;
 
-  private TextView textViewUsername;
+  private TextInputEditText editTextUsername;
   private TextView textViewEmail;
   private TextView textViewTelephone;
 
   private ProgressBar progressBarProfile;
 
+  private FirebaseDatabaseHelper firebaseDatabaseHelper;
 
+
+  @SuppressLint("ClickableViewAccessibility")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -104,6 +111,29 @@ public class ProfileActivity extends AppCompatActivity {
         return true;
       }
     });
+
+    editTextUsername.setOnTouchListener(new View.OnTouchListener() {
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        final int DRAWABLE_LEFT = 0;
+        final int DRAWABLE_TOP = 1;
+        final int DRAWABLE_RIGHT = 2;
+        final int DRAWABLE_BOTTOM = 3;
+
+        if(event.getAction() == MotionEvent.ACTION_UP) {
+          if(event.getRawX() >= (editTextUsername.getRight() - editTextUsername.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+            Log.d(TAG, "onClickChangeUsername: init.");
+
+            firebaseDatabaseHelper.updateUsername(firebaseUser, editTextUsername.getText().toString());
+
+            Toast.makeText(getApplicationContext(), getString(R.string.changeUsernameSuccess), Toast.LENGTH_SHORT).show();
+
+            return true;
+          }
+        }
+        return false;
+      }
+    });
   }
 
   private void toLoginActivity() {
@@ -117,10 +147,11 @@ public class ProfileActivity extends AppCompatActivity {
     drawerLayout = findViewById(R.id.activity_profile);
     navigationView = findViewById(R.id.navigationView);
     textViewEmail = findViewById(R.id.textViewEmail);
-    textViewUsername = findViewById(R.id.textViewUsername);
+    editTextUsername = findViewById(R.id.editTextUsername);
     textViewTelephone = findViewById(R.id.textViewTelephone);
     progressBarProfile = findViewById(R.id.progressBarProfile);
     progressBarProfile.setVisibility(View.GONE);
+    firebaseDatabaseHelper = new FirebaseDatabaseHelper(this);
   }
 
   @Override
@@ -157,10 +188,7 @@ public class ProfileActivity extends AppCompatActivity {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
         progressBarProfile.setVisibility(View.GONE);
-
-        //dataSnapshot.getValue(User.class);
-
-        textViewUsername.setText(dataSnapshot.child(firebaseUser.getUid()).child("username").getValue().toString());
+        editTextUsername.setText(dataSnapshot.child(firebaseUser.getUid()).child("username").getValue().toString());
         textViewEmail.setText(dataSnapshot.child(firebaseUser.getUid()).child("email").getValue().toString());
         textViewTelephone.setText(dataSnapshot.child(firebaseUser.getUid()).child("telephone").getValue().toString());
       }
@@ -171,6 +199,6 @@ public class ProfileActivity extends AppCompatActivity {
       }
     });
 
-
   }
+
 }
