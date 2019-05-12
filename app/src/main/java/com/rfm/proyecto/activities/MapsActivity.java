@@ -62,6 +62,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
   User user;
   Location location;
   List<Location> markers;
+  List<Marker> userMarkers = new ArrayList<>();
 
 
   @Override
@@ -174,15 +175,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
-
-        while (iterator.hasNext()) {
-          DataSnapshot next = iterator.next();
+        for (DataSnapshot next : dataSnapshot.getChildren()) {
           String key = next.getKey();
 
           location = next.getValue(Location.class);
 
           LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
           mMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
 
         }
