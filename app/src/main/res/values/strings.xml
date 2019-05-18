@@ -37,10 +37,18 @@
     <string name="title_activity_maps" translatable="false">Map</string>
     <string name="username">Username</string>
     <string name="welcome_message">Welcome!</string>
+    <string name="ZOOMLEVEL8" translatable="false">8</string>
+    <string name="ZOOMLEVEL10" translatable="false">10</string>
     <string name="ZOOMLEVEL12" translatable="false">12</string>
+    <string name="ZOOMLEVEL14" translatable="false">14</string>
     <string name="ZOOMLEVEL16" translatable="false">16</string>
     <string name="ZOOMLEVEL18" translatable="false">18</string>
     <string name="ZOOMLEVEL20" translatable="false">20</string>
     <string name="phone">Telephone</string>
     <string name="changeUsernameSuccess">User name changed successfully</string>
+    <string name="descriptionLocation">description</string>
+    <string name="back">Back</string>
+    <string name="view_on_map">View on map</string>
+    <string name="message_one_help">This is an application where you can find different monuments and archaeological finds</string>
+    <string name="message_two_help">" If you keep pressing on any of the cards, a menu will be displayed to know more about the place and / or to see it located on the map."</string>
 </resources>

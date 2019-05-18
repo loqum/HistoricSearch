@@ -2,19 +2,18 @@ package com.rfm.proyecto.utils;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.rfm.proyecto.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -23,13 +22,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
   private static final String TAG = "RecyclerViewAdapter";
 
-  private List<String> imageNames = new ArrayList<>();
-  private List<String> images = new ArrayList<>();
+  private List<String> imageNames;
+  private List<String> images;
+  private List<String> descriptionLocation;
   private Context context;
 
-  public RecyclerViewAdapter(Context context, List<String> imageNames, List<String> images) {
+  public RecyclerViewAdapter(Context context, List<String> imageNames, List<String> images, List<String> descriptionLocation) {
     this.imageNames = imageNames;
     this.images = images;
+    this.descriptionLocation = descriptionLocation;
     this.context = context;
   }
 
@@ -37,8 +38,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
   @Override
   public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
     View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_listitem, viewGroup, false);
-    ViewHolder holder = new ViewHolder(view);
-    return holder;
+    RecyclerViewAdapter.ViewHolder viewHolder = new RecyclerViewAdapter.ViewHolder(view);
+    return viewHolder;
   }
 
   @Override
@@ -48,13 +49,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     Glide.with(context).asBitmap().load(images.get(position)).into(viewHolder.circleImageView);
 
     viewHolder.textViewImage.setText(imageNames.get(position));
-    viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Log.d(TAG, "onClick: clicked on: " + imageNames.get(position));
-        Toast.makeText(context, imageNames.get(position), Toast.LENGTH_SHORT).show();
-      }
-    });
+    viewHolder.textViewDescriptionLocation.setText(descriptionLocation.get(position));
+
   }
 
   @Override
@@ -62,18 +58,29 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     return imageNames.size();
   }
 
-  public class ViewHolder extends RecyclerView.ViewHolder {
+  public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
 
     CircleImageView circleImageView;
     TextView textViewImage;
-    RelativeLayout parentLayout;
+    TextView textViewDescriptionLocation;
+    CardView cardView;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
       circleImageView = itemView.findViewById(R.id.circleImageView);
       textViewImage = itemView.findViewById(R.id.textViewImage);
-      parentLayout = itemView.findViewById(R.id.parentLayout);
+      textViewDescriptionLocation = itemView.findViewById(R.id.textViewDescriptionLocation);
+      cardView = itemView.findViewById(R.id.cardView);
+      itemView.setOnCreateContextMenuListener(this);
 
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+      menu.add(0, 121, getAdapterPosition(), "Saber más");
+      menu.add(0, 122, getAdapterPosition(), "Ver en mapa");
+    }
+
   }
+
 }

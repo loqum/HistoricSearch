@@ -53,10 +53,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
   private Intent mainActivityIntent;
   private Intent mapsActivityIntent;
   private Intent profileActivityIntent;
-  DatabaseReference MARKERS_DATABASE_REFERENCE;
-  User user;
-  Location location;
-  List<Location> markers;
+  private DatabaseReference MARKERS_DATABASE_REFERENCE;
+  private User user;
+  private Location location;
+  private List<Location> markers;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +108,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             break;
 
           case R.id.about_us_item:
-            Alerts.alertDialogAbout(MapsActivity.this, getDrawable(R.drawable.icon_about_item), getString(R.string.about_us), getString(R.string.author).concat("\n"), getString(R.string.github), getString(R.string.accept));
+            Alerts.alertDialog(MapsActivity.this, getDrawable(R.drawable.icon_about_item), getString(R.string.about_us), getString(R.string.author).concat("\n"), getString(R.string.github), getString(R.string.accept));
             break;
         }
         return true;
@@ -135,14 +135,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     uiSettings.setZoomControlsEnabled(true);
     uiSettings.setMyLocationButtonEnabled(true);
 
-    // Add a marker in Barcelona and move the camera
     LatLng barcelona = new LatLng(41.3887901, 2.1589899);
-    mMap.addMarker(new MarkerOptions().position(barcelona).title("Marker in Barcelona"));
     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(barcelona, Float.parseFloat(getApplication().getString(R.string.ZOOMLEVEL12))));
 
-    //Ciudad romana de Baetulo
-    final LatLng baetulo = new LatLng(41.452489, 2.247261);
-    mMap.addMarker(new MarkerOptions().position(baetulo).title("Yacimiento Ciudad Romana de Baetulo"));
+    setLocationMarker();
 
     mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
 
@@ -186,7 +182,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
       }
     });
 
-
   }
 
   public void onClickButtonSatellite(View view) {
@@ -212,6 +207,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     mainActivityIntent = new Intent(getApplication(), MainActivity.class);
     mapsActivityIntent = new Intent(getApplication(), MapsActivity.class);
     profileActivityIntent = new Intent(getApplication(), ProfileActivity.class);
+  }
+
+  private void setLocationMarker() {
+    Intent intent = getIntent();
+    Bundle bundle = intent.getExtras();
+
+    if (bundle != null) {
+      LatLng latLng = (LatLng) bundle.get("MARKER");
+      String name = (String) bundle.get("NAME");
+
+      mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+      mMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).title(name));
+      mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, Float.parseFloat(getApplication().getString(R.string.ZOOMLEVEL14))));
+    }
   }
 
 }

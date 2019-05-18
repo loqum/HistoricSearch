@@ -10,7 +10,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -100,7 +99,7 @@ public class ProfileActivity extends AppCompatActivity {
             Toast.makeText(ProfileActivity.this, "Help", Toast.LENGTH_SHORT).show();
             break;
           case R.id.about_us_item:
-            Alerts.alertDialogAbout(ProfileActivity.this,
+            Alerts.alertDialog(ProfileActivity.this,
                     getDrawable(R.drawable.icon_about_item),
                     getString(R.string.about_us),
                     getString(R.string.author).concat("\n"),

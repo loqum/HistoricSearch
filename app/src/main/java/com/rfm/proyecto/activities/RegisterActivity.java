@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.rfm.proyecto.R;
 import com.rfm.proyecto.controller.FirebaseDatabaseHelper;
 import com.rfm.proyecto.pojo.User;
+import com.rfm.proyecto.utils.Alerts;
 import com.rfm.proyecto.utils.InputValidation;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -175,7 +176,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                       @Override
                       public void onComplete(@NonNull Task<Void> task) {
-                        Snackbar.make(nestedScrollView, getString(R.string.success_message), Snackbar.LENGTH_LONG).show();
+                        Alerts.displayMessage(nestedScrollView, getString(R.string.success_message));
                         emptyInputEditText();
                       }
                     });
@@ -185,7 +186,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                   } else {
 
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                      Snackbar.make(nestedScrollView, getString(R.string.error_email_exists), Snackbar.LENGTH_LONG).show();
+                      Alerts.displayMessage(nestedScrollView, getString(R.string.error_email_exists));
 
                     }
 

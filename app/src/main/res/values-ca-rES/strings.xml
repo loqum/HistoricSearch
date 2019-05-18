@@ -32,4 +32,9 @@
     <string name="accept">Acceptar</string>
     <string name="phone">Telèfon</string>
     <string name="changeUsernameSuccess">Nom d\'usuari canviat</string>
+    <string name="descriptionLocation">descripció</string>
+    <string name="view_on_map">Veure en mapa</string>
+    <string name="back">Tornar</string>
+    <string name="message_one_help">Aquesta és una aplicación on podràs trobar diferents monuments i troballes arqueològiques</string>
+    <string name="message_two_help">" Si mantens pressionat a sobre d'alguna de les targetes es desplegarà un menú per conèixer més sobre el lloc i / o mostrar la localització."</string>
 </resources>
