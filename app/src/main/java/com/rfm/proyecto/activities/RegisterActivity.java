@@ -30,6 +30,7 @@ import com.rfm.proyecto.controller.FirebaseDatabaseHelper;
 import com.rfm.proyecto.pojo.User;
 import com.rfm.proyecto.utils.Alerts;
 import com.rfm.proyecto.utils.InputValidation;
+import com.rfm.proyecto.utils.LangUtils;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,7 +46,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
   private TextInputLayout textInputLayoutEmail;
   private TextInputLayout textInputLayoutPassword;
   private TextInputLayout textInputLayoutConfirmPassword;
-  private TextInputLayout textInputLayoutTelephone;
 
   private TextInputEditText textInputEditTextUsername;
   private TextInputEditText textInputEditTextEmail;
@@ -59,15 +59,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
   private AppCompatTextView appCompatTextViewLoginLink;
 
   private InputValidation inputValidation;
-  private FirebaseDatabaseHelper firebaseDatabaseHelper;
-  private DatabaseReference databaseReference;
   private User user;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_register);
-
+    LangUtils.getLocale(this);
     mAuth = FirebaseAuth.getInstance();
 
     initViews();
@@ -82,7 +80,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     textInputLayoutEmail = findViewById(R.id.textInputLayoutEmail);
     textInputLayoutPassword = findViewById(R.id.textInputLayoutPassword);
     textInputLayoutConfirmPassword = findViewById(R.id.textInputLayoutConfirmPassword);
-    textInputLayoutTelephone = findViewById(R.id.textInputLayoutTelephone);
 
     textInputEditTextUsername = findViewById(R.id.textInputEditTextUsername);
     textInputEditTextEmail = findViewById(R.id.textInputEditTextEmail);
@@ -107,9 +104,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
   private void initObjects() {
     inputValidation = new InputValidation(activity);
-    firebaseDatabaseHelper = new FirebaseDatabaseHelper(activity);
-    databaseReference = FirebaseDatabase.getInstance().getReference();
-
   }
 
   @Override

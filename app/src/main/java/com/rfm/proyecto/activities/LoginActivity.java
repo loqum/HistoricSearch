@@ -1,6 +1,10 @@
 package com.rfm.proyecto.activities;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -11,6 +15,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -23,6 +28,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.rfm.proyecto.R;
 import com.rfm.proyecto.utils.Alerts;
 import com.rfm.proyecto.utils.InputValidation;
+import com.rfm.proyecto.utils.LangUtils;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Locale;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,29 +41,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
   private final AppCompatActivity activity = LoginActivity.this;
 
   private FirebaseAuth mAuth;
-
   private NestedScrollView nestedScrollView;
-
   private TextInputLayout textInputLayoutEmail;
   private TextInputLayout textInputLayoutPassword;
-
   private TextInputEditText editTextMail;
   private TextInputEditText editTextPassword;
-
   private AppCompatButton buttonLogin;
-
   private AppCompatTextView textViewLinkRegister;
-
   private InputValidation inputValidation;
-
   private ProgressBar progressBarLogin;
+  private ImageButton buttonLangEs;
+  private ImageButton buttonLangCa;
+  private ImageButton buttonLangEn;
 
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
-
+    LangUtils.getLocale(this);
     FirebaseApp.initializeApp(this);
 
     mAuth = FirebaseAuth.getInstance();
@@ -67,25 +73,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
   private void initViews() {
     nestedScrollView = findViewById(R.id.nestedScrollView);
-
     textInputLayoutEmail = findViewById(R.id.textInputLayoutEmail);
     textInputLayoutPassword = findViewById(R.id.textInputLayoutPassword);
-
     editTextMail = findViewById(R.id.editTextEmail);
     editTextPassword = findViewById(R.id.editTextPassword);
-
     buttonLogin = findViewById(R.id.buttonLogin);
-
     textViewLinkRegister = findViewById(R.id.textViewLinkRegister);
-
     progressBarLogin = findViewById(R.id.progressBarLogin);
-
+    buttonLangEs = findViewById(R.id.button_lang_es);
+    buttonLangCa = findViewById(R.id.button_lang_ca);
+    buttonLangEn = findViewById(R.id.button_lang_en);
 
   }
 
   private void initListeners() {
     buttonLogin.setOnClickListener(this);
     textViewLinkRegister.setOnClickListener(this);
+    buttonLangEs.setOnClickListener(this);
+    buttonLangCa.setOnClickListener(this);
+    buttonLangEn.setOnClickListener(this);
   }
 
   private void initObjects() {
@@ -103,6 +109,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Intent intentRegister = new Intent(getApplicationContext(), RegisterActivity.class);
         startActivity(intentRegister);
         break;
+
+      case R.id.button_lang_es:
+        LangUtils.setLocale(this, "es");
+        recreate();
+        break;
+
+      case R.id.button_lang_ca:
+        LangUtils.setLocale(this, "ca");
+        recreate();
+        break;
+
+      case R.id.button_lang_en:
+        LangUtils.setLocale(this, "en");
+        recreate();
+        break;
     }
   }
 
@@ -113,7 +134,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     if (!inputValidation.isInputEditTextMail(editTextMail, textInputLayoutEmail, getString(R.string.error_message_email))) {
       return;
     }
-    if (!inputValidation.isInputEditTextFilled(editTextPassword, textInputLayoutPassword, getString(R.string.error_message_email))) {
+    if (!inputValidation.isInputEditTextFilled(editTextPassword, textInputLayoutPassword, getString(R.string.error_message_password))) {
       return;
     }
 
@@ -136,8 +157,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                   progressBarLogin.setVisibility(View.GONE);
 
                   Log.w(TAG, "signInWithEmail:failure", task.getException());
-                  Toast.makeText(LoginActivity.this, "Authentication failed.",
-                          Toast.LENGTH_SHORT).show();
                 }
 
                 if (!task.isSuccessful()) {
@@ -160,4 +179,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     startActivity(intent);
     finish();
   }
+
 }

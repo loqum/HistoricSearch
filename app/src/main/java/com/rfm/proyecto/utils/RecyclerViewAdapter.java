@@ -38,8 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
   @Override
   public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
     View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_listitem, viewGroup, false);
-    RecyclerViewAdapter.ViewHolder viewHolder = new RecyclerViewAdapter.ViewHolder(view);
-    return viewHolder;
+    return new RecyclerViewAdapter.ViewHolder(view);
   }
 
   @Override
@@ -65,7 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     TextView textViewDescriptionLocation;
     CardView cardView;
 
-    public ViewHolder(@NonNull View itemView) {
+    private ViewHolder(@NonNull View itemView) {
       super(itemView);
       circleImageView = itemView.findViewById(R.id.circleImageView);
       textViewImage = itemView.findViewById(R.id.textViewImage);
@@ -77,8 +76,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-      menu.add(0, 121, getAdapterPosition(), "Saber más");
-      menu.add(0, 122, getAdapterPosition(), "Ver en mapa");
+      menu.add(0, 121, getAdapterPosition(), context.getString(R.string.more_info));
+      menu.add(0, 122, getAdapterPosition(), context.getString(R.string.view_on_map));
     }
 
   }

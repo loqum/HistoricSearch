@@ -36,5 +36,10 @@
     <string name="view_on_map">Veure en mapa</string>
     <string name="back">Tornar</string>
     <string name="message_one_help">Aquesta és una aplicación on podràs trobar diferents monuments i troballes arqueològiques</string>
-    <string name="message_two_help">" Si mantens pressionat a sobre d'alguna de les targetes es desplegarà un menú per conèixer més sobre el lloc i / o mostrar la localització."</string>
+    <string name="message_two_help">Si mantens pressionat a sobre d\'alguna de les targetes es desplegarà un menú per conèixer més sobre el lloc i / o mostrar la localització.</string>
+    <string name="lang_ca">Català</string>
+    <string name="lang_en">Anglès</string>
+    <string name="lang_es">Castellà</string>
+    <string name="language">Idioma</string>
+    <string name="more_info">Saber més</string>
 </resources>

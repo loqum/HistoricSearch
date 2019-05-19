@@ -35,8 +35,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rfm.proyecto.R;
 import com.rfm.proyecto.pojo.Location;
-import com.rfm.proyecto.pojo.User;
 import com.rfm.proyecto.utils.Alerts;
+import com.rfm.proyecto.utils.LangUtils;
 import com.rfm.proyecto.utils.MapsUtil;
 
 import java.util.ArrayList;
@@ -54,14 +54,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
   private Intent mapsActivityIntent;
   private Intent profileActivityIntent;
   private DatabaseReference MARKERS_DATABASE_REFERENCE;
-  private User user;
   private Location location;
-  private List<Location> markers;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_maps);
+    LangUtils.getLocale(this);
     initViews();
     initObjects();
 
@@ -104,11 +103,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             break;
 
           case R.id.help_item:
-            Toast.makeText(MapsActivity.this, "Help", Toast.LENGTH_SHORT).show();
+            Alerts.alertDialog(MapsActivity.this,
+                    getDrawable(R.drawable.icon_help_item),
+                    getString(R.string.help),
+                    getString(R.string.message_one_help),
+                    getString(R.string.message_two_help),
+                    getString(R.string.accept));
             break;
 
           case R.id.about_us_item:
             Alerts.alertDialog(MapsActivity.this, getDrawable(R.drawable.icon_about_item), getString(R.string.about_us), getString(R.string.author).concat("\n"), getString(R.string.github), getString(R.string.accept));
+            break;
+
+          case R.id.lang_es_item:
+            LangUtils.setLocale(MapsActivity.this, "es");
+            recreate();
+            break;
+
+          case R.id.lang_ca_item:
+            LangUtils.setLocale(MapsActivity.this, "ca");
+            recreate();
+            break;
+
+          case R.id.lang_en_item:
+            LangUtils.setLocale(MapsActivity.this, "en");
+            recreate();
             break;
         }
         return true;
@@ -201,9 +220,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
   }
 
   private void initObjects() {
-    user = new User();
     location = new Location();
-    markers = new ArrayList<>();
     mainActivityIntent = new Intent(getApplication(), MainActivity.class);
     mapsActivityIntent = new Intent(getApplication(), MapsActivity.class);
     profileActivityIntent = new Intent(getApplication(), ProfileActivity.class);

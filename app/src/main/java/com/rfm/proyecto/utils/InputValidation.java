@@ -10,70 +10,91 @@ import android.view.inputmethod.InputMethodManager;
 
 public class InputValidation {
 
-    private Context context;
+  private final Context context;
 
-    public InputValidation(Context context) {
-        this.context = context;
+  public InputValidation(Context context) {
+    this.context = context;
+  }
+
+  public boolean isInputEditTextFilled(TextInputEditText editText, TextInputLayout inputLayout, String message) {
+    String value = "";
+
+    if (editText.getText() != null) {
+      value = editText.getText().toString().trim();
     }
 
-    public boolean isInputEditTextFilled(TextInputEditText editText, TextInputLayout inputLayout, String message) {
-        String value = editText.getText().toString().trim();
-
-        if (value.isEmpty()) {
-            inputLayout.setError(message);
-            hideKeyboardFrom(editText);
-            return false;
-        } else {
-            inputLayout.setErrorEnabled(false);
-        }
-
-        return true;
+    if (value.isEmpty()) {
+      inputLayout.setError(message);
+      hideKeyboardFrom(editText);
+      return false;
+    } else {
+      inputLayout.setErrorEnabled(false);
     }
 
-    public boolean isInputEditTextMail(TextInputEditText editText, TextInputLayout inputLayout, String message) {
-        String value = editText.getText().toString().trim();
+    return true;
+  }
 
-        if (value.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(value).matches()) {
-            inputLayout.setError(message);
-            hideKeyboardFrom(editText);
-            return false;
-        } else {
-            inputLayout.setErrorEnabled(false);
-        }
+  public boolean isInputEditTextMail(TextInputEditText editText, TextInputLayout inputLayout, String message) {
+    String value = "";
 
-        return true;
-
+    if (editText.getText() != null) {
+      value = editText.getText().toString().trim();
     }
 
-    public boolean isInputEditTextMatches(TextInputEditText editTextOne, TextInputEditText editTextTwo, TextInputLayout inputLayout, String message) {
-        String value1 = editTextOne.getText().toString().trim();
-        String value2 = editTextTwo.getText().toString().trim();
-        if (!value1.contentEquals(value2)) {
-            inputLayout.setError(message);
-            hideKeyboardFrom(editTextTwo);
-            return false;
-        } else {
-            inputLayout.setErrorEnabled(false);
-        }
-        return true;
+    if (value.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(value).matches()) {
+      inputLayout.setError(message);
+      hideKeyboardFrom(editText);
+      return false;
+    } else {
+      inputLayout.setErrorEnabled(false);
     }
 
-    public boolean isInputEditTextPasswordCorrect(TextInputEditText editText, TextInputLayout inputLayout, String message) {
-        String value = editText.getText().toString().trim();
+    return true;
 
-        if (value.length() < 6) {
-            inputLayout.setError(message);
-            hideKeyboardFrom(editText);
-            return false;
-        } else {
-            inputLayout.setErrorEnabled(false);
-        }
+  }
 
-        return true;
+  public boolean isInputEditTextMatches(TextInputEditText editTextOne, TextInputEditText editTextTwo, TextInputLayout inputLayout, String message) {
+    String value1 = "";
+    String value2 = "";
+
+    if (editTextOne.getText() != null) {
+      value1 = editTextOne.getText().toString().trim();
     }
 
-    private void hideKeyboardFrom(View view) {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    if (editTextTwo.getText() != null) {
+      value2 = editTextTwo.getText().toString().trim();
     }
+
+    if (!value1.contentEquals(value2)) {
+      inputLayout.setError(message);
+      hideKeyboardFrom(editTextTwo);
+      return false;
+    } else {
+      inputLayout.setErrorEnabled(false);
+    }
+    return true;
+  }
+
+  public boolean isInputEditTextPasswordCorrect(TextInputEditText editText, TextInputLayout inputLayout, String message) {
+    String value = "";
+
+    if (editText.getText() != null) {
+      value = editText.getText().toString().trim();
+    }
+
+    if (value.length() < 6) {
+      inputLayout.setError(message);
+      hideKeyboardFrom(editText);
+      return false;
+    } else {
+      inputLayout.setErrorEnabled(false);
+    }
+
+    return true;
+  }
+
+  private void hideKeyboardFrom(View view) {
+    InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+    imm.hideSoftInputFromWindow(view.getWindowToken(), WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+  }
 }

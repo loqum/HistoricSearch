@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.rfm.proyecto.R;
 import com.rfm.proyecto.controller.FirebaseDatabaseHelper;
 import com.rfm.proyecto.utils.Alerts;
+import com.rfm.proyecto.utils.LangUtils;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -59,6 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_profile);
     initViews();
+    LangUtils.getLocale(this);
     setSupportActionBar(toolbar);
 
     FirebaseApp.initializeApp(this);
@@ -96,7 +98,12 @@ public class ProfileActivity extends AppCompatActivity {
             finish();
             break;
           case R.id.help_item:
-            Toast.makeText(ProfileActivity.this, "Help", Toast.LENGTH_SHORT).show();
+            Alerts.alertDialog(ProfileActivity.this,
+                    getDrawable(R.drawable.icon_help_item),
+                    getString(R.string.help),
+                    getString(R.string.message_one_help),
+                    getString(R.string.message_two_help),
+                    getString(R.string.accept));
             break;
           case R.id.about_us_item:
             Alerts.alertDialog(ProfileActivity.this,
@@ -105,6 +112,21 @@ public class ProfileActivity extends AppCompatActivity {
                     getString(R.string.author).concat("\n"),
                     getString(R.string.github),
                     getString(R.string.accept));
+            break;
+
+          case R.id.lang_es_item:
+            LangUtils.setLocale(ProfileActivity.this, "es");
+            recreate();
+            break;
+
+          case R.id.lang_ca_item:
+            LangUtils.setLocale(ProfileActivity.this, "ca");
+            recreate();
+            break;
+
+          case R.id.lang_en_item:
+            LangUtils.setLocale(ProfileActivity.this, "en");
+            recreate();
             break;
         }
         return true;
@@ -119,8 +141,8 @@ public class ProfileActivity extends AppCompatActivity {
         final int DRAWABLE_RIGHT = 2;
         final int DRAWABLE_BOTTOM = 3;
 
-        if(event.getAction() == MotionEvent.ACTION_UP) {
-          if(event.getRawX() >= (editTextUsername.getRight() - editTextUsername.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+          if (event.getRawX() >= (editTextUsername.getRight() - editTextUsername.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
             Log.d(TAG, "onClickChangeUsername: init.");
 
             firebaseDatabaseHelper.updateUsername(firebaseUser, editTextUsername.getText().toString());

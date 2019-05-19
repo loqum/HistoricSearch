@@ -37,4 +37,9 @@
     <string name="back">Volver</string>
     <string name="message_one_help">Esta es una aplicación donde puedes encontrar diferentes monumentos y hallazgos arqueológicos</string>
     <string name="message_two_help">Si mantienes presionado encima de alguna de las tarjetas se desplegará un menú para conocer más acerca del lugar y/o poder verlo localizado en el mapa.</string>
+    <string name="lang_ca">Catalán</string>
+    <string name="lang_en">Inglés</string>
+    <string name="lang_es">Español</string>
+    <string name="language">Idioma</string>
+    <string name="more_info">Saber más</string>
 </resources>

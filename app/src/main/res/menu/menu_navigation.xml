@@ -25,4 +25,30 @@
         android:id="@+id/about_us_item"
         android:icon="@drawable/icon_about_item"
         android:title="@string/about_us" />
+
+    <item
+        android:id="@+id/lang_item"
+        android:icon="@drawable/ic_language"
+        android:title="@string/language">
+
+    <menu>
+        <item
+            android:id="@+id/lang_es_item"
+            android:icon="@drawable/ic_language"
+            android:title="@string/lang_es"
+            android:checkable="true"/>
+        <item
+            android:id="@+id/lang_ca_item"
+            android:icon="@drawable/ic_language"
+            android:title="@string/lang_ca"
+            android:checkable="true"/>
+        <item
+            android:id="@+id/lang_en_item"
+            android:icon="@drawable/ic_language"
+            android:title="@string/lang_en"
+            android:checkable="true"/>
+    </menu>
+
+    </item>
+
 </menu>

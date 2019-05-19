@@ -34,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.rfm.proyecto.R;
 import com.rfm.proyecto.pojo.HistoricLocation;
 import com.rfm.proyecto.utils.Alerts;
+import com.rfm.proyecto.utils.LangUtils;
 import com.rfm.proyecto.utils.RecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     FirebaseApp.initializeApp(this);
-
+    LangUtils.getLocale(this);
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     if (firebaseUser == null) {
@@ -122,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
                     getString(R.string.message_one_help),
                     getString(R.string.message_two_help),
                     getString(R.string.accept));
-            Toast.makeText(MainActivity.this, "Help", Toast.LENGTH_SHORT).show();
             break;
 
           case R.id.about_us_item:
@@ -133,6 +133,22 @@ public class MainActivity extends AppCompatActivity {
                     getString(R.string.github),
                     getString(R.string.accept));
             break;
+
+          case R.id.lang_es_item:
+            LangUtils.setLocale(MainActivity.this, "es");
+            recreate();
+            break;
+
+          case R.id.lang_ca_item:
+            LangUtils.setLocale(MainActivity.this, "ca");
+            recreate();
+            break;
+
+          case R.id.lang_en_item:
+            LangUtils.setLocale(MainActivity.this, "en");
+            recreate();
+            break;
+
         }
         return true;
       }
@@ -427,7 +443,6 @@ public class MainActivity extends AppCompatActivity {
     builder.setView(view);
     dialog = builder.create();
   }
-
 
 }
 
